@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My lecture</title>
+  </head>
+  <body>
+    <h2>My lecture</h2>
+    {% if is_tutor %}
+    <table border="1">
+      <thead>
+        <th>subject</th>
+        <th>lecture name</th>
+        <th>tutee</th>
+        <th>price</th>
+      </thead>
+
+      <tbody>
+        {% for lecture in tutorLectures %}
+        <tr>
+          <td>{{ lecture[0] }}</td>
+          <td>{{ lecture[1] }}</td>
+          <td>{{ lecture[2] }}</td>
+          <td>{{ lecture[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br />
+    <h2>Registered Lecture</h2>
+    {% endif %}
+    <table border="1">
+      <thead>
+        <th>subject</th>
+        <th>lecture name</th>
+        <th>tutor</th>
+        <th>price</th>
+      </thead>
+      <tbody>
+        {% for lecture in mylectures %}
+        <tr>
+          <td>{{ lecture[0] }}</td>
+          <td>{{ lecture[1] }}</td>
+          <td>{{ lecture[2] }}</td>
+          <td>{{ lecture[3] }}</td>
+          <td>
+            <form action="/drop" method="get">
+              <input type="hidden" name="id" value="{{ id }}" />
+              <input type="hidden" name="subject" value="{{lecture[0]}}" />
+              <input type="hidden" name="name" value="{{lecture[1]}}" />
+              <input type="hidden" name="tutor" value="{{lecture[2]}}" />
+              <input type="hidden" name="price" value="{{lecture[3]}}" />
+              <button type="submit" formmethod="GET">drop</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <button onclick="goBack()">return</button>
+    <script>
+      function goBack() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>

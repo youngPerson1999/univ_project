@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Drop Lecture</title>
+  </head>
+  <body>
+    <h2>Drop Lecture</h2>
+    <table border="1">
+      <thead>
+        <th>subject</th>
+        <th>name</th>
+        <th>price</th>
+        <th>tutor</th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>{{ lecture[0] }}</td>
+          <td>{{ lecture[1] }}</td>
+          <td>{{ lecture[2] }}</td>
+          <td>{{ lecture[3] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    Would you drop {{lecture[1]}}?
+    <br />
+    ==============================================
+    <br />
+    Refund: {{lecture[4]}} (90%)
+    <br />
+    Credit: {{credit}}
+    <form action="/drop" method="post">
+      <input type="hidden" name="tutee" value="{{id}}" />
+      <input type="hidden" name="tutor" value="{{lecture[3]}}" />
+      <input type="hidden" name="name" value="{{lecture[1]}}" />
+      <input type="hidden" name="refund" value="{{lecture[4]}}" />
+      <button type="submit" formmethod="POST">confirm</button>
+    </form>
+    <form action="/mylecture" method="get">
+      <input type="hidden" name="id" value="{{ id }}" />
+      <input type="hidden" name="send" value="my info" />
+      <button type="submit" formmethod="GET">cancel</button>
+    </form>
+  </body>
+</html>

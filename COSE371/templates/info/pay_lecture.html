@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pay Lecture</title>
+  </head>
+  <body>
+    <div>
+      <h2>Lecture INFO</h2>
+      <table border="1">
+        <thead>
+          <th>code</th>
+          <th>name</th>
+          <th>price</th>
+          <th>tutor</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{ lecture[0] }}</td>
+            <td>{{ lecture[1] }}</td>
+            <td>{{ lecture[2] }}</td>
+            <td>{{ lecture[3] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      Your credit: {{tutee[1]}}
+      <br />
+      Your rating: {{tutee[2]}}
+      <br />
+      <br />
+      Total price: {{lecture[2]}}
+      <br />
+      Discount price: {{pay[0]}}
+      <br />
+      ===============================================
+      <br />
+      Final price: {{pay[1]}}
+    </div>
+    <form action="/pay" method="post">
+      <input type="hidden" name="tutee" value="{{tutee[0]}}" />
+      <input type="hidden" name="tutor" value="{{lecture[3]}}" />
+      <input type="hidden" name="price" value="{{lecture[2]}}" />
+      <input type="hidden" name="name" value="{{lecture[1]}}" />
+      <input type="hidden" name="code" value="{{lecture[0]}}" />
+      <input type="hidden" name="t_price" value="{{pay[1]}}" />
+      <button type="submit" formmethod="POST">confirm</button>
+    </form>
+    <form action="/info" method="get">
+      <input type="hidden" name="id" value="{{ tutee[0] }}" />
+      <button type="submit" formmethod="GET">cancel</button>
+    </form>
+  </body>
+</html>

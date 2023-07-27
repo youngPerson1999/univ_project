@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Password Edit</title>
+  </head>
+  <body>
+    <h2>My Password Edit</h2>
+    <form action="/edit" method="post">
+      <label for="cur_pw">Current PW: </label>
+      <input id="cur_pw" type="password" name="cur_pw" />
+      <br />
+      <label for="new_pw">New PW: </label>
+      <input id="new_pw" type="password" name="new_pw" />
+      <br />
+      <input type="hidden" name="id" value="{{id}}" />
+      <button type="submit">update</button>
+    </form>
+    <button onclick="goBack()">return</button>
+    <script>
+      function goBack() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>

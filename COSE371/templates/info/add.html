@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Lecture</title>
+  </head>
+  <body>
+    <div id="subjectList">
+      Subject List
+      <table border="1">
+        <tbody>
+          {% for subject in subjects %}
+          <tr>
+            <td>{{ subject[0] }}</td>
+            <td>{{ subject[1] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div id="addLectureForm">
+      <br />
+      <form action="/add" method="post">
+        <label for="code">Code: </label>
+        <input id="code" type="text" name="code" value="" />
+        <br />
+        <label for="code">Name: </label>
+        <input id="name" type="text" name="name" value="" />
+        <br />
+        <label for="price">Price: </label>
+        <input id="price" type="text" name="price" value="" />
+        <br />
+        <input type="hidden" name="id" value="{{ tutor_id }}" />
+        <input type="submit" name="send" value="add" />
+      </form>
+    </div>
+    <button onclick="goBack()">return</button>
+    <script>
+      function goBack() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>

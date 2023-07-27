@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>print_table</title>
+  </head>
+  <body>
+    {% if id=="users" %}
+    <table border="1">
+      <thead>
+        <th>id</th>
+        <th>role</th>
+        <th>credit</th>
+        <th>rating</th>
+      </thead>
+
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user[0] }}</td>
+          <td>{{ user[1] }}</td>
+          <td>{{ user[2] }}</td>
+          <td>{{ user[3] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% elif id=="trades" %}
+    <table border="1">
+      <thead>
+        <th>tutee</th>
+        <th>tutor</th>
+        <th>code</th>
+        <th>name</th>
+        <th>price</th>
+      </thead>
+
+      <tbody>
+        {% for trade in trades %}
+        <tr>
+          <td>{{ trade[0] }}</td>
+          <td>{{ trade[1] }}</td>
+          <td>{{ trade[2] }}</td>
+          <td>{{ trade[3] }}</td>
+          <td>{{ trade[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+    <button onclick="goBack()">return</button>
+    <script>
+      function goBack() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>

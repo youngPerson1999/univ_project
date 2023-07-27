@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    {% if is_admin %}
+    <title>Admin Information</title>
+    {% else %}
+    <title>User Information</title>
+    {% endif %}
+  </head>
+  <body>
+    {% if is_admin %} Admin function
+    <br />
+    <form action="/admin_func" method="get">
+      <input type="submit" name="send" value="users info" />
+      <input type="submit" name="send" value="trades info" />
+    </form>
+    <br />
+    {% endif %} View lecture
+    <br />
+    <form action="/mylecture" method="get">
+      <input type="hidden" name="id" value="{{ u_info[0] }}" />
+      <input type="submit" name="send" value="my info" />
+    </form>
+    ==============================================
+    <div>
+      <table border="1">
+        <thead>
+          <th>popular subject</th>
+          <th>popular lecture</th>
+          <th>popular tutor</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{ populars[0] }}</td>
+            <td>{{ populars[1] }}</td>
+            <td>{{ populars[2] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </div>
+    <div>
+      <h2>User Info</h2>
+      <br />
+      <form method="get">
+        current user: {{ u_info[0] }} /
+        <button type="submit" formaction="/logout">logout</button>
+        /
+        <input type="hidden" name="id" value="{{u_info[0]}}" />
+        <button type="submit" formaction="/edit">edit</button>
+      </form>
+      credit: {{ u_info[1] }}
+      <br />
+      rating: {{ u_info[2] }}
+    </div>
+    <div>
+      <h2>Lectures</h2>
+      {% if is_tutor %}
+      <form action="/add" method="get">
+        <input type="hidden" name="id" value="{{ u_info[0] }}" />
+        <button type="submit" formmethod="GET">add</button>
+      </form>
+      {% endif %}
+      <table border="1">
+        <thead>
+          <th>code</th>
+          <th>name</th>
+          <th>price</th>
+          <th>tutor</th>
+        </thead>
+
+        <tbody>
+          {% for lecture in lectures %}
+          <tr>
+            <td>{{ lecture[0] }}</td>
+            <td>{{ lecture[1] }}</td>
+            <td>{{ lecture[2] }}</td>
+            <td>{{ lecture[3] }}</td>
+            <td>
+              <form action="/pay" method="get">
+                <input type="hidden" name="code" value="{{ lecture[0] }}" />
+                <input type="hidden" name="name" value="{{ lecture[1] }}" />
+                <input type="hidden" name="price" value="{{ lecture[2] }}" />
+                <input type="hidden" name="tutor" value="{{ lecture[3] }}" />
+                <input type="hidden" name="id" value="{{ u_info[0] }}" />
+                <button type="submit" formmethod="GET">register</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
